@@ -1,0 +1,45 @@
+<p>admin works!</p>
+<button (click)="logout()">Logout</button>
+<button (click)="getsupermarkets()">Supermarkets</button>
+<div *ngIf="supermarkets.length > 0">
+  <h2>List of Supermarkets:</h2>
+  <ul>
+    <li *ngFor="let supermarket of supermarkets">
+      <input
+      type="text"
+      [(ngModel)]="supermarket.name">
+      <input
+      type="text"
+      [(ngModel)]="supermarket.address">
+      <button (click)="deleteSupermarket(supermarket.id)">Delete</button>
+      <button (click)="updateSupermarket(supermarket.id, supermarket.name ?? '', supermarket.address ?? '')">Update supermarket</button>
+    </li>
+  </ul>
+</div>
+<div *ngIf="supermarkets.length === 0">
+  <p>No supermarkets found.</p>
+</div>
+<form (ngSubmit)="addSupermarket(name,address)">
+  <div class="form-group">
+    <label for="username">Name:</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      [(ngModel)]="name"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Address:</label>
+    <input
+      type="text"
+      id="password"
+      name="password"
+      [(ngModel)]="address"
+      required
+    />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
